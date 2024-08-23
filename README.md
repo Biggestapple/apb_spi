@@ -2,7 +2,7 @@
 The implemention of spi master protocol, standard APB, for future reference
 
 ## IP Core Configuration 
-  * 寄存器映射表
+
 |  表头   | 表头  |
 |  ----  | ----  |
 | 单元格  | 单元格 |
