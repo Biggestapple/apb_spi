@@ -2,8 +2,7 @@
   * The implemention of spi master protocol, standard APB, for future reference
 
 ## IP Core Configuration
-  * The implemention of spi master protocol, standard APB, for future reference
-
+  * Memory mapping table
 |  表头   | 表头  |
 |  ----  | ----  |
 | 单元格  | 单元格 |
