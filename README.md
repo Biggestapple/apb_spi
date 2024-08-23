@@ -4,10 +4,10 @@
 ## IP Core Configuration
   * Memory mapping table
 
-|  表头   | 表头  |
-|  ----  | ----  |
-| 单元格  | 单元格 |
-| 单元格  | 单元格 |
+|  Address Offset   | Register Name  | Description  |
+|  ----  | ----  | ----  |
+| 单元格  | 单元格 | 单元格 |
+| 单元格  | 单元格 | 单元格 |
 
 ## Timing Diagram
 基本按照AXI4协议,tvalid拉高表示数据有效,给了N个数据之后,给一个tlast表示是最后一个数据
