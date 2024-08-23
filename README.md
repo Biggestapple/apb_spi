@@ -2,11 +2,7 @@
 The implemention of spi master protocol, standard APB, for future reference
 
 ## IP Core Configuration 
-* 配置(按照图中)
-  * 对于数据位宽的配置有一些疑问(设置输入数据位宽为14,IP核中的输入数据仍然为16位)
-  * 由于输入数据是signed形式,假设有一个14位的数据
-    * 如果有IP核16位数据,理论上需要进行位拓展 (将最高位(符号位)往高位复制)   {Data[13],Data[13],Data}
-    * 如果IP核时14位数据,是否只需要输入14位数据,最高位空着(√)               {0,0,Data}
+  * 寄存器映射表
   
   
 ## Timing Diagram
