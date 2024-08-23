@@ -1,5 +1,5 @@
 # SpiMaster-ipcore
-The implemention of spi master protocol, standard APB, for future reference
+* The implemention of spi master protocol, standard APB, for future reference
 
 ## IP Core Configuration 
 
@@ -7,6 +7,7 @@ The implemention of spi master protocol, standard APB, for future reference
 |  ----  | ----  |
 | 单元格  | 单元格 |
 | 单元格  | 单元格 |
+
 ## Timing Diagram
 基本按照AXI4协议,tvalid拉高表示数据有效,给了N个数据之后,给一个tlast表示是最后一个数据
 
