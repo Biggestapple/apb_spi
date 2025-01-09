@@ -1,8 +1,8 @@
 /* 
  * @Author: DaExp 
  * @Date: 2025-01-09 13:00
- * @LastEditTime: 2025-01-09 17:00
- * @Description: 本文件是SPI底层驱动的头文件，定义了SPI结构
+ * @LastEditTime: 2025-01-09 20:00
+ * @Description: 
  * @Copyright (c) 2025 by DaExp, All Rights Reserved. 
  */
 
