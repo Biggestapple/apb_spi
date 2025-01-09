@@ -11,5 +11,5 @@
      └─ cmsdk_apb_spi.v
 ```
 
-## IP Core Configuration
+## IP Core and Register Configuration
 
