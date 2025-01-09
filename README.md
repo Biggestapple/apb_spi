@@ -4,11 +4,11 @@
 - 具有三种可屏蔽中断：接受/发送完成中断、溢出中断
 ## 2. Document Structures
 ```markdown
-─ hardware  
+─ hardware----------------------硬件代码
   ├─ sim  
-  │  └─ apb_spi_tb.v   
+  │  └─ apb_spi_tb.v------------仿真激励      
   └─ rtl   
-     └─ cmsdk_apb_spi.v
+     └─ cmsdk_apb_spi.v---------IP核主程序
 ```
 
 ## IP Core and Register Configuration
