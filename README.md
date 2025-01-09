@@ -13,12 +13,3 @@
 
 ## 3. IP Core and Register Configuration
 
-
-## 4. Interrupt Signals
-```verilog
-  ...
-	output	wire		TXEINT,
-	output	wire		RXNEINT,
-	output	wire		OVRINT,
-  ...
-```
