@@ -8,7 +8,7 @@
   ├─ sim  
   │  └─ apb_spi_tb.v------------仿真激励      
   └─ rtl   
-     └─ cmsdk_apb_spi.v---------IP核主程序
+     └─ cmsdk_apb_spi.v---------IP核 I'm here :)
 ```
 
 ## IP Core and Register Configuration
