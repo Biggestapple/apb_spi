@@ -11,5 +11,14 @@
      └─ cmsdk_apb_spi.v---------IP核 I'm here :)
 ```
 
-## IP Core and Register Configuration
+## 3. IP Core and Register Configuration
 
+
+## 4. Interrupt Signals
+```verilog
+  ...
+	output	wire		TXEINT,
+	output	wire		RXNEINT,
+	output	wire		OVRINT,
+  ...
+```
