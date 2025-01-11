@@ -1,7 +1,7 @@
 /* 
  * @Author: DaExp 
  * @Date: 2025-01-09 13:00
- * @LastEditTime: 2025-01-09 20:00
+ * @LastEditTime: 2025-01-11 17:00
  * @Description: 
  * @Copyright (c) 2025 by DaExp, All Rights Reserved. 
  */
@@ -13,54 +13,67 @@
 
 #define SPI_BASE_ADDR 0X40002000
 
-//-----------------------------------------------------------------
-typedef struct
-{
-    vu32 TXE  : 1;    // SPI发送缓冲区空，发送完成，软件置一
-    vu32 RXNE : 1;    // SPI接收缓冲区非空，接收完成，软件清零
-    vu32      : 30;   // 保留
-} SPI_SR;
-typedef union
-{
-    vu8  U8_TYPE : 4;
-    vu32 U32_TYPE;
-} SPI_BR;
 
-typedef struct
-{
-    union
-    {
-        struct
-        {
-            vu32 EN         : 1;    // SPI使能
-            vu32 CPOL       : 1;    // 时钟极性
-            vu32 CPHA       : 1;    // 时钟相位
-            vu32 DFF        : 1;    // 数据帧格式,8位还是16位
-            vu32 LSBFIRST   : 1;    // 低位在前
-            vu32 RXNEIE     : 1;    // 接收中断使能
-            vu32 TXNEIE     : 1;    // 发送中断使能
-            vu32 OVRINIT_EN : 1;    // 从机模式（别管他）
-            vu32            : 24;   // 保留
-        } bit;
-        vu8 byte;
-    } CR;        // 0x00
-    SPI_SR SR;   // 0x04
-    SPI_BR BR;   // 0x08
-    vu32   TXDR : 8;
-    vu32        : 24; /*!< (@ 0x0000000C) send data region                                           */
-    vu32 RXDR   : 8;
-    vu32        : 24; /*!< (@ 0x00000010) receive data region                                        */
-} SPI_TypeDef;
+/**
+  * @brief Serial peripheral interface (SPI1)
+  */
+
+typedef struct {                                /*!< (@ 0x40002000) SPI1 Structure                                             */
+  
+  union {
+    __IOM u8 reg;                          /*!< (@ 0x00000000) control register                                           */
+    
+    struct {
+      __IOM u8 EN          : 1;            /*!< [0..0] SPI EN                                                             */
+      __IOM u8 CPOL        : 1;            /*!< [1..1] Clock polarity                                                     */
+      __IOM u8 CPHA        : 1;            /*!< [2..2] Clock phase                                                        */
+      __IOM u8 DFF         : 1;            /*!< [3..3] Data frame format                                                  */
+      __IOM u8 LSBFIRST    : 1;            /*!< [4..4] Frame format                                                       */
+      __IOM u8 EXNEIR      : 1;            /*!< [5..5] Receive interrupt enable                                           */
+      __IOM u8 TXNEIE      : 1;            /*!< [6..6] Send interrupt enable                                              */
+      __IOM u8 OVRINIT_EN  : 1;            /*!< [7..7] Slave mode enable                                                  */
+    } bit;
+  } CR;
+  __IM  u8   RESERVED;
+  __IM  u16  RESERVED1;
+  
+  union {
+    __IOM u8 reg;                          /*!< (@ 0x00000004) status register                                            */
+    
+    struct {
+      __OM  u8 TXE         : 1;            /*!< [0..0] Transmit buffer empty                                              */
+      __OM  u8 RXNE        : 1;            /*!< [1..1] Receive buffer not empty                                           */
+            u8             : 6;
+    } bit;
+  } SR;
+  __IM  u8   RESERVED2;
+  __IM  u16  RESERVED3;
+  
+  union {
+    __IOM u8 reg;                          /*!< (@ 0x00000008) baud divider                                               */
+    
+    struct {
+      __IOM u8 DR          : 4;            /*!< [3..0] only 4 bits can write , divider                                    */
+            u8             : 4;
+    } bit;
+  } BR;
+  __IM  u8   RESERVED4;
+  __IM  u16  RESERVED5;
+  __IOM u16  TXDR;                         /*!< (@ 0x0000000C) send data region                                           */
+  __IM  u16  RESERVED6;
+  __IOM u16  RXDR;                         /*!< (@ 0x00000010) receive data region                                        */
+} SPI_TypeDef;                                    /*!< Size = 18 (0x12)                                                          */
+
 
 #define SPI2_BASE_ADDR (0X40003000)
 #define SPI1           ((SPI_TypeDef*)SPI_BASE_ADDR)
 #define SPI2           ((SPI_TypeDef*)SPI2_BASE_ADDR)
-#define SPI_EN         NUM2VAR(SPI_REG_TYPE, SPI_BASE_ADDR).CR.BIT.EN = 1;
-#define SPI_DISABLE    NUM2VAR(SPI_REG_TYPE, SPI_BASE_ADDR).CR.BIT.EN = 0;
+#define SPI_EN         NUM2VAR(SPI_TypeDef, SPI_BASE_ADDR).CR.bit.EN = 1;
+#define SPI_DISABLE    NUM2VAR(SPI_TypeDef, SPI_BASE_ADDR).CR.bit.EN = 0;
 
-#define SET_GPIO_BIT(port, bit)   (*(__IO uint32_t*)(port) |= (1 << (bit)))
-#define CLEAR_GPIO_BIT(port, bit) (*(__IO uint32_t*)(port) &= ~(1 << (bit)))
-#define READ_GPIO_BIT(port, bit)  (*(__IO uint32_t*)(port) &= (1 << (bit)))
+#define SET_GPIO_BIT(port, bit)   (*(__IO u32*)(port) |= (1 << (bit)))
+#define CLEAR_GPIO_BIT(port, bit) (*(__IO u32*)(port) &= ~(1 << (bit)))
+#define READ_GPIO_BIT(port, bit)  (*(__IO u32*)(port) &= (1 << (bit)))
 
 #define SPI_CS_H() P15_Out(1)
 #define SPI_CS_L() P15_Out(0)
